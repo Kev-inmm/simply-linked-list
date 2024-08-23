@@ -4,23 +4,33 @@ Node::Node() : data(0), next(nullptr){};
 
 Node::Node(int data) : data(data), next(nullptr){};
 
-Node::~Node() {
-    delete next;
-}
 
 LinkedList::LinkedList() : head(nullptr), size(0) {};
 
-LinkedList::~LinkedList(){
-    delete head;
+LinkedList::~LinkedList() {
+    Node* current = head;
+    while (current != nullptr) {
+        Node* next = current->next;
+        delete current;
+        current = next;
+    }
 }
+
+void LinkedList::insertAtBeginning(int data){
+    Node* newNode = new Node(data);
+
+    this->head = newNode;
+    this->size++;
+
+}
+
 
 void LinkedList::insertAtEnd(int data) {
     Node* newNode = new Node(data);
 
     if(this->head == nullptr){
         this->head = newNode;
-        this->empty = false;
-        this->size = 1;
+        this->size++;
     }else{
         Node* temp = head;
         while (temp->next != nullptr) {
@@ -36,31 +46,29 @@ void LinkedList::deleteAtEnd() {
         return;
     }
 
-    if(this->head->next == nullptr){
+    if (this->head->next == nullptr){
         delete head;
         this->head = nullptr;
         this->size = 0;
-        this->empty = true;
+        return;
     }
 
-    if(this->head != nullptr){
-        Node* temp = head;
-        while (temp->next->next != nullptr) {
-            temp = temp->next;
-        }
-
-        // temp zeigt jetzt auf den vorletzten Knoten.
-        delete temp->next;
-        temp->next = nullptr;
-        this->size -= 1;
+    Node* temp = head;
+    while (temp->next->next != nullptr) {
+        temp = temp->next;
     }
+
+    delete temp->next;
+    temp->next = nullptr;
+    this->size -= 1;
+
 
 }
 
 std::string LinkedList::displayInfos() {
     std::ostringstream strout;
 
-    strout << std::boolalpha << "Is list Empty: " << this->empty << "\nList size: " << this->size;
+    strout << std::boolalpha << "Is list Empty: " << (this->head == nullptr) << "\nList size: " << this->size;
     return strout.str();
 }
 
@@ -75,7 +83,7 @@ std::string LinkedList::displayList() {
             strout << "Node(data: " << current->data << ", next: " << current->next << ") -> ";
             current = current->next;
         }
-        strout << "nullptr"; // Das Ende der Liste wird mit nullptr markiert.
+        strout << "nullptr";
     }
 
     return strout.str();

@@ -17,7 +17,6 @@ public:
 
     Node();
     Node(int);
-    ~Node();
 };
 
 
@@ -26,14 +25,23 @@ public:
     LinkedList();
     ~LinkedList();
 
+    void insertAtBeginning(int);
+    void insertAtPosition(int, int);
     void insertAtEnd(int);
+
+    void deleteAtBeginning();
+    void deleteAtPosition(int, int);
     void deleteAtEnd();
+
+    int search(int);
+    void clear();
+    void getHead();
+
     std::string displayInfos();
     std::string displayList();
 
 protected:
 private:
-    bool empty = {true};
     Node *head;
     int size;
 };
