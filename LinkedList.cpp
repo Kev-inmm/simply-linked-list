@@ -86,21 +86,24 @@ void LinkedList::deleteAtEnd() {
 
 void LinkedList::insertAfterData(int key, int data) {
     Node* newNode = new Node(data);
-
-
     Node* curr = this->head;
+
+    int pos = 0;
 
     if(this->head == nullptr){
         this->head = newNode;
+        pos++;
         return;
     }
 
     while (curr != nullptr) {
-        if (curr->data == key)
+        pos++;
+        if (curr->data == key) {
             break;
+        }
         curr = curr->next;
     }
-
+    std::cout<< "your data: " << data << " | inserted after position: " << pos << std::endl;
     newNode->next = curr->next;
     curr->next = newNode;
 }
