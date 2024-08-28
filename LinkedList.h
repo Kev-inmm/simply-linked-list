@@ -12,7 +12,7 @@
 
 class Node {
 public:
-    Node *next;
+    Node* next;
     int data;
 
     Node();
@@ -26,23 +26,23 @@ public:
     ~LinkedList();
 
     void insertAtBeginning(int);
-    void insertAtPosition(int, int);
+    void insertAfterData(int, int);
     void insertAtEnd(int);
 
     void deleteAtBeginning();
-    void deleteAtPosition(int, int);
+    void deleteAtPosition(int);
     void deleteAtEnd();
 
-    int search(int);
+    Node* search(int);
     void clear();
-    void getHead();
+    Node* getHead();
 
     std::string displayInfos();
     std::string displayList();
 
 protected:
 private:
-    Node *head;
+    Node* head;
     int size;
 };
 

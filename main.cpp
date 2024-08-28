@@ -3,25 +3,46 @@
 #include "LinkedList.h"
 
 int main() {
-    LinkedList liste1;
 
-    liste1.insertAtEnd(10);
-    liste1.insertAtEnd(12);
+    LinkedList* pList = new LinkedList;
 
-    std::cout << liste1.displayInfos() << std::endl;
-    std::cout << liste1.displayList() << std::endl;
+    pList->insertAtBeginning(2);
+    std::cout << pList->displayList() << std::endl;
+
+    pList->deleteAtBeginning();
+    std::cout << pList->displayList() << std::endl;
+
+    pList->insertAtBeginning(5);
+    std::cout << pList->displayList() << std::endl;
+
+    pList->insertAtEnd(10);
+    std::cout << pList->displayList() << std::endl;
+
+    pList->insertAtBeginning(222);
+    std::cout << pList->displayList() << std::endl;
+
+    pList->clear();
+
+    std::cout << pList->displayList() << std::endl;
+
+    pList->deleteAtBeginning();
+    std::cout << pList->displayList() << std::endl;
+
+    pList->deleteAtEnd();
+    std::cout << pList->displayList() << std::endl;
+
+    std::cout << pList->getHead() << std::endl;
+    std::cout << pList->displayInfos() << std::endl;
+
+    pList->insertAfterData(3,3);
+    pList->insertAtBeginning(444);
+    pList->insertAfterData(444,222);
+    pList->insertAfterData(444,5);
 
 
-    liste1.deleteAtEnd();
-    std::cout << liste1.displayInfos() << std::endl;
-    std::cout << liste1.displayList() << std::endl;
+    std::cout << pList->displayList() << std::endl;
 
-    liste1.deleteAtEnd();
-    std::cout << liste1.displayInfos() << std::endl;
-    std::cout << liste1.displayList() << std::endl;
+    std::cout << pList->search(5) << std::endl;
 
-    liste1.insertAtEnd(2222);
-    std::cout << liste1.displayInfos() << std::endl;
-    std::cout << liste1.displayList() << std::endl;
     return 0;
 }
