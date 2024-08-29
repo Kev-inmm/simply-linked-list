@@ -11,11 +11,13 @@ int main() {
     pList->insertAtEnd(3);
     pList->insertAtEnd(4);
 
-    pList->insertAfterData(3, 99);
+    pList->insertAfterData(4, 99);
+
+
 
     std::cout << pList->displayList() << std::endl;
-
-
+pList->deleteAtPosition(1);
+    std::cout << pList->displayList() << std::endl;
 
     return 0;
 }

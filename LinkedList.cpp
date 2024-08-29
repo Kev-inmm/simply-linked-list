@@ -108,6 +108,41 @@ void LinkedList::insertAfterData(int key, int data) {
     curr->next = newNode;
 }
 
+void LinkedList::deleteAtPosition(int pos) {
+    if (this->head == nullptr) {
+        return;
+    }
+
+    Node* curr = this->head;
+
+    if (pos == 1) {
+        this->head = curr->next;
+        delete curr;
+        return;
+    }
+
+    Node* prev = nullptr;
+
+
+    for (int i = 1; curr != nullptr && i < pos; i++) {
+        prev = curr;
+        curr = curr->next;
+    }
+
+
+    if (curr == nullptr) {
+        std::cout << "Position not present\n";
+        return;
+    }
+
+
+    prev->next = curr->next;
+
+
+    delete curr;
+}
+
+
 Node* LinkedList::search(int key) {
     Node* curr = this->head;
 
